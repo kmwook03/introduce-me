@@ -1,8 +1,4 @@
-# 김민욱 자기소개 · 방명록
-
-기존 자기소개 HTML/CSS/JavaScript를 보존하고 Express와 PostgreSQL로 방명록을 추가한 서비스다. 정적 화면과 API를 같은 Node.js 프로세스에서 제공하고, DB는 별도 프로세스·Pod에서 실행한다.
-
-현재 **로컬 구현과 실제 PostgreSQL·브라우저 검증을 완료**했다. OpenShift 로그인 환경이 없어 클러스터 기동, PVC 권한·영속성, Route HTTPS, quota, 전체 삭제 후 재배포는 아직 검증하지 않았다. 제출 완료 상태로 간주하지 않는다. 실제 확인 내역은 [검증 기록](docs/verification.md)을 참고한다.
+# 자기소개 · 방명록
 
 ## 로컬 실행
 
