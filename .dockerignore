@@ -1,0 +1,14 @@
+.git
+.agents
+.codex
+.aws
+.env
+.env.*
+node_modules
+*.pdf
+*.log
+test
+deploy
+scripts
+plan.md
+README.md

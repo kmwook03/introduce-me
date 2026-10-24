@@ -1,0 +1,42 @@
+services:
+  db:
+    image: quay.io/sclorg/postgresql-16-c9s@sha256:66566a27e08ec28d739c5fc54dcd47a4f0b505682d469589e9d493ae0b7bc9ab
+    environment:
+      POSTGRESQL_USER: ${DB_USER:-portfolio}
+      POSTGRESQL_PASSWORD: ${DB_PASSWORD:-portfolio-local-only}
+      POSTGRESQL_DATABASE: ${DB_NAME:-portfolio}
+      POSTGRESQL_LOG_DESTINATION: /dev/stderr
+      POSTGRESQL_MAX_CONNECTIONS: "30"
+      POSTGRESQL_SHARED_BUFFERS: 32MB
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/pgsql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 20s
+  web:
+    build: .
+    profiles: [full]
+    environment:
+      PORT: "8080"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME:-portfolio}
+      DB_USER: ${DB_USER:-portfolio}
+      DB_PASSWORD: ${DB_PASSWORD:-portfolio-local-only}
+      DB_STARTUP_TIMEOUT_MS: "90000"
+      TRUST_PROXY: "false"
+    ports:
+      - "127.0.0.1:${PORT:-8080}:8080"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    depends_on:
+      db:
+        condition: service_started
+volumes:
+  db-data:

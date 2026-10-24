@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="김민욱 포트폴리오">
+  <meta name="theme-color" content="#F5F5F5">
+  <title>김민욱</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+  <main id="main" class="wrap">
+    <div class="profile-layout">
+      <aside class="profile-card" aria-labelledby="profile-name">
+        <div class="profile-identity">
+        <figure class="portrait">
+          <div class="portrait-media">
+            <svg id="photo-placeholder" viewBox="0 0 400 435" role="img" aria-label="본인 사진을 추가할 자리">
+              <defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#b9c6b1" stroke-width=".65"/></pattern></defs>
+              <rect width="400" height="435" fill="#dfe5d9"/><rect width="400" height="435" fill="url(#grid)"/>
+              <circle cx="200" cy="202" r="134" fill="#f2f1e6"/>
+              <path d="M68 435v-53c0-71 58-126 132-126s132 55 132 126v53" fill="#91a58c"/>
+              <path d="M162 254v39c0 29 76 29 76 0v-39" fill="#b3bea7"/>
+              <ellipse cx="200" cy="192" rx="66" ry="79" fill="#bac6af"/>
+              <path d="M133 187c-9-65 27-104 73-104 52 0 72 42 61 109l-17-32c-32 8-65 0-80-18z" fill="#506e55"/>
+              <path d="M25 48V25h23M352 25h23v23M375 387v23h-23M48 410H25v-23" fill="none" stroke="#506e55" stroke-width="2"/>
+            </svg>
+            <img id="profile-photo" alt="프로필 사진" hidden decoding="async">
+          </div>
+          <figcaption class="sr-only" id="photo-caption">사진 준비 중</figcaption>
+        </figure>
+          <div class="profile-details">
+            <h1 id="profile-name" data-name>이름 입력</h1>
+            <p class="profile-school" id="school">학교명 입력</p>
+            <p class="profile-major" id="major">전공명 입력</p>
+            <div class="profile-contacts" aria-label="연락처 및 블로그">
+              <p><span class="contact-label">메일</span><span id="contact-email" aria-disabled="true">이메일 입력 예정</span></p>
+              <p><span class="contact-label">블로그</span><span id="contact-blog" aria-disabled="true">블로그 입력 예정</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="profile-github"><span class="button" data-github aria-disabled="true">GitHub 입력 예정 ↗</span></div>
+        <section class="skills-section" id="skills" aria-labelledby="skills-title">
+          <h2 id="skills-title">기술 스택</h2>
+          <div class="stack" id="skill-list"></div>
+        </section>
+      </aside>
+      <section class="about-panel" id="about" aria-labelledby="about-title">
+        <div class="section-head"><div><h2 id="about-title">안녕하세요, 김민욱입니다.</h2></div></div>
+        <p class="about-copy" id="about-copy">자기소개 적는 칸.</p>
+        <section class="interests-section" id="interests" aria-labelledby="interests-title">
+          <h3 id="interests-title">관심사</h3>
+          <div class="interest-grid" id="interest-list"></div>
+        </section>
+      </section>
+    </div>
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head"><div><h2 id="projects-title">프로젝트 및 연구</h2></div></div>
+      <div class="projects" id="project-list"></div>
+    </section>
+    <section class="section" id="guestbook" aria-labelledby="guestbook-title">
+      <div class="section-head">
+        <div><p class="section-kicker mono">GUESTBOOK</p><h2 id="guestbook-title">방명록</h2></div>
+        <p class="section-note">방문한 흔적을 남겨주세요.</p>
+      </div>
+      <div class="guestbook-layout">
+        <form id="guestbook-form" class="guestbook-form" aria-describedby="guestbook-help">
+          <p id="guestbook-help" class="section-note">누구나 볼 수 있는 공간입니다. 연락처 등 개인정보는 남기지 마세요.</p>
+          <label for="guestbook-name">이름 <span class="field-limit">최대 40자</span></label>
+          <input id="guestbook-name" name="name" required autocomplete="nickname" aria-describedby="name-count">
+          <span id="name-count" class="field-count">0 / 40</span>
+          <label for="guestbook-message">메시지 <span class="field-limit">최대 1,000자</span></label>
+          <textarea id="guestbook-message" name="message" rows="5" required aria-describedby="message-count"></textarea>
+          <span id="message-count" class="field-count">0 / 1,000</span>
+          <button class="button primary" id="guestbook-submit" type="submit">글 남기기</button>
+          <p id="guestbook-form-status" class="guestbook-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="guestbook-feed">
+          <div class="guestbook-toolbar"><h3>남겨주신 이야기</h3><button class="button" id="guestbook-refresh" type="button">새로고침</button></div>
+          <p id="guestbook-list-status" class="guestbook-status" role="status" aria-live="polite">방명록을 불러오는 중입니다.</p>
+          <ul id="guestbook-list" class="guestbook-list" aria-label="방명록 글" aria-busy="true"></ul>
+          <button class="button" id="guestbook-more" type="button" hidden>더 불러오기</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><p>© <span id="year">2026</span> <span data-name>나의 포트폴리오</span>. </p><a href="#main">맨 위로 ↑</a></div></footer>
+  <noscript><p class="wrap empty-note">관심사·기술 스택·프로젝트 및 연구 목록을 보려면 브라우저에서 JavaScript를 활성화해주세요.</p></noscript>
+
+  <!-- JSON 값 수정 -> 페이지 전체에 반영 -->
+  <!-- photo에는 사진의 data URL 또는 index.html 기준 상대 경로를 입력 -->
+  <script id="profile-data" type="application/json">
+  {
+    "name": "김민욱",
+    "school": "부산대학교",
+    "schoolLogo": "/images/school-logo.png",
+    "major": "정보컴퓨터공학부",
+    "email": "mw700972@gmail.com",
+    "blog": "https://menook.tistory.com/",
+    "about": "소프트웨어와 하드웨어의 상호작용에 흥미를 느껴 컴퓨터 시스템과 임베디드 시스템을 공부하기 시작했습니다. 코드 한 줄의 실수가 큰 사고로 이어질 수 있는 임베디드 소프트웨어의 특성을 이해하고, 안정성과 성능을 함께 고려하는 개발자가 되고자 합니다.",
+    "photo": "/images/profile.jpg",
+    "github": "https://github.com/kmwook03",
+    "interests": [
+      { "title": "Operating Systems", "description": "컴퓨터가 하드웨어 자원을 관리하는 과정을 깊이 이해하고 싶어 운영체제 공부를 시작했습니다. xv6와 Haribote OS를 통해 기본 작동 원리를 익혔고, 이를 응용해 실제 하드웨어에서 실행되는 자체 운영체제를 개발했습니다. 커널의 구조와 자원 관리 방식을 살펴보며, 시스템의 안정성과 성능을 함께 고민하는 데 관심이 있습니다." },
+      { "title": "Embedded Systems", "description": "소프트웨어로 물리 장치를 제어하고, 작성한 코드가 실제 동작으로 이어지는 과정에 흥미를 느낍니다. STM32와 Raspberry Pi를 활용해 다양한 임베디드 시스템을 만들며 공부하고 있습니다. 하드웨어의 특성과 제한된 자원을 고려해 소프트웨어를 설계하고, 센서와 주변 장치를 안정적으로 연결하는 방법을 더 깊이 배우고자 합니다." },
+      { "title": "Physical AI", "description": "인공지능을 물리적인 시스템과 결합해 환경을 인식하고 상황에 맞게 동작하는 시스템을 만들고자 합니다. 센서로 얻은 정보를 바탕으로 판단하고, 그 결과가 실제 장치의 움직임으로 이어지는 과정에 관심이 있습니다. 모델의 정확도뿐 아니라 응답 속도와 하드웨어의 제약도 함께 고려하며, 실제 환경에서 유용하게 작동하는 지능형 시스템을 구현해 보고 싶습니다." }
+    ],
+    "skills": [
+      { "category": "Languages", "items": ["C/C++", "Python"] },
+      { "category": "Systems & Platforms", "items": ["Linux", "eBPF", "ROS 2"] },
+      { "category": "Development Tools", "items": ["GNU Binutils", "QEMU", "CMake"] },
+      { "category": "Hardware & Embedded", "items": ["Raspberry Pi 5", "STM32"] }
+    ],
+    "projects": [
+      {
+        "name": "Mowkow OS 64",
+        "description": "32비트 교육용 한글 운영체제를 x86-64로 확장한 프로젝트입니다. 기존 교육용 운영체제가 32비트에 ASCII 출력만 제공한다는 한계를 개선한 한국 학생들을 위한 교육용 운영체제를 만들고자 시작한 프로젝트입니다. 한글 입출력, FAT32 파일 시스템, GUI와 다중 콘솔, MicroPython·머꼬 실행 환경을 제공하며, Raspberry Pi 5용 AArch64 포트를 개발하여 실제 Raspberry Pi 5 기기에서 실행할 수 있습니다.",
+        "stack": ["C", "Assembly", "QEMU", "MicroPython"],
+        "github": "https://github.com/kmwook03/Mowkow-OS-64"
+      },
+      {
+        "name": "FILE-EdoTensei",
+        "description": "Linux 환경에서 동작하는 C++17 기반 파일 복구 도구입니다. Aho–Corasick 알고리즘으로 파일 시그니처를 탐색하고 JPEG·PNG·PDF의 구조를 검증합니다. NTFS 메타데이터를 활용한 복구와 JSON Lines 형식의 결과 보고서를 지원합니다.",
+        "stack": ["C++17", "Linux", "CMake", "Python"],
+        "github": "https://github.com/kmwook03/FILE-EdoTensei"
+      },
+      {
+        "name": "Linux Kernel Deep Dive",
+        "description": "eBPF와 XDP를 활용해 Linux 커널의 동작과 성능을 실험적으로 분석하는 프로젝트입니다. WSL2와 Raspberry Pi 5에서 스케줄러·페이지 폴트·네트워크·인터럽트를 관측하고, 메모리 정책과 하드웨어 자원이 성능에 미치는 영향을 비교했습니다.",
+        "stack": ["C", "Python", "Linux", "eBPF", "XDP"],
+        "github": "https://github.com/kmwook03/kernel-deep-dive"
+      }
+    ],
+    "publications": [
+      {
+        "title": "한글 함수형 프로그래밍 언어 머꼬를 활용한 한글 운영체제 구현",
+        "authors": "김민욱, 김영훈, 우균",
+        "role": "제1저자",
+        "venue": "대한전자공학회 하계종합학술대회 논문집",
+        "year": "2026.06",
+        "pages": "1258–1261",
+        "description": "한글 입출력과 GNU 텍스트 편집기·머꼬 인터프리터를 갖춘 교육용 운영체제 Mowkow OS를 제안했습니다. 머꼬의 내장 함수만으로 부트로더 기계어를 생성하고, SHA-256 해시 비교로 생성 결과의 일치를 확인해 한글 기반 시스템 프로그래밍의 가능성을 검증했습니다.",
+        "url": "https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12992377"
+      }
+    ]
+  }
+  </script>
+  <script src="/js/profile.js" defer></script>
+  <script src="/js/guestbook.js" defer></script>
+</body>
+</html>
